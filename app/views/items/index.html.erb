@@ -1,0 +1,6 @@
+<h1><%= @category.name %></h1>
+<ol>
+    <% @category.items.each do |item| %>
+        <li><%= item.name %> <br>Price: <%= item.price %></li>
+    <% end %>
+</ol>
