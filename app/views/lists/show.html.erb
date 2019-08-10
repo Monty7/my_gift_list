@@ -1,0 +1,7 @@
+<h1><%= @list.name %> List</h1>
+<ul>
+    <% @list.items.each do |item| %>
+        <li><%= item.name %></li>
+    <% end %>
+</ul>
+<%= link_to "Add Items To Your List",  categories_path %>

@@ -1,0 +1,8 @@
+<h1><%= @item.name %></h1>
+
+<%= form_for(@list_item) do |f| %>
+    <%= f.label :name %>
+    <%= f.collection_select :list_id, @lists, :id, :name %> 
+    <%= f.hidden_field :item_id, value: @item.id %>
+    <%= f.submit %>
+<% end %>

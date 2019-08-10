@@ -1,0 +1,7 @@
+<h1>Create a new list</h1>
+
+<%= form_for(@list, url: user_lists_path) do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.submit "Create New List"%>
+<% end %>

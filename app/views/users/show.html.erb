@@ -1,0 +1,12 @@
+<h1><%= @user.username %> Lists</h1>
+
+<% if @user.lists.empty? %>
+    <h4>You currently do not have any lists</h4>
+    
+<% else %>
+    <% @user.lists.each do |list| %>
+        <div><%= link_to list.name, user_list_path(@user, list) %></div>
+    <% end %>
+<% end %>
+
+<p>Create a new <%= link_to "gift list", new_user_list_path(@user) %></p>

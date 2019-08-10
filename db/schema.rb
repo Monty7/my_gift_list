@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_07_141931) do
+ActiveRecord::Schema.define(version: 2019_08_09_180423) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 2019_08_07_141931) do
   create_table "list_items", force: :cascade do |t|
     t.integer "list_id"
     t.integer "item_id"
-    t.integer "user_id" #will be assigned to the purchaser upon purchase
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2019_08_07_141931) do
     t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "uid"
   end
 
 end
