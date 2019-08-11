@@ -10,12 +10,12 @@ class SessionsController < ApplicationController
 
     def facebook_omni
         @user = User.find_or_create_by(uid: auth['uid']) do |u|
-          #  u.uid = auth['uid']
+           u.password_digest = auth["uid"]
            # binding.pry
            u.username = auth['info']['name']
            u.email = auth['info']['email']
         end
-      #  binding.pry
+       # binding.pry
         session[:user_id] = @user.id
         flash[:success] = "You're now logged in"
         redirect_to user_path(@user.id)

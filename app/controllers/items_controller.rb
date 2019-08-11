@@ -13,8 +13,8 @@ class ItemsController < ApplicationController
 
     def show
         @list_item = ListItem.new
-       @item = Item.find(params[:category_id])
-        @lists = current_user.lists
+       @item = Item.find(params[:id])
+       
     end
 
     def create
