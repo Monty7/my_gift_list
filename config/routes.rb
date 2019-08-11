@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     end
   end
   #resources :items
-  resources :list_items, only: [:create]
+  resources :list_items, only: [:create, :show, :edit, :update, :destroy]
   
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :categories, only: [:index, :show] do

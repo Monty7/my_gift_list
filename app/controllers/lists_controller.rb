@@ -1,4 +1,6 @@
 class ListsController < ApplicationController
+   # include ActionView::Helpers::ListItemsHelper::find_listItem
+   include ListItemsHelper
    def index   
    end
 
@@ -20,10 +22,15 @@ class ListsController < ApplicationController
    def show
     @list = List.find(params[:id])
     @user = User.find(params[:user_id])
+  #  @listItem = ListItem.find_by(list_id: params[:id], item_id: item.id)
+  # binding.pry
 
    end
-end
 
-def list_params
-    params.require(:list).permit(:name)
+
+private
+
+    def list_params
+        params.require(:list).permit(:name)
+    end
 end

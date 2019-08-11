@@ -14,7 +14,9 @@ class ItemsController < ApplicationController
     def show
         @list_item = ListItem.new
        @item = Item.find(params[:id])
-       
+        @lists = current_user.lists
+       #@category = Category.find(params[:category_id])
+       #binding.pry
     end
 
     def create
