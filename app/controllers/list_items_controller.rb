@@ -18,7 +18,7 @@ class ListItemsController < ApplicationController
     end
 
     def destroy
-       # binding.pry
+        binding.pry
         list = ListItem.find_by(id: params[:id]).list.id
         ListItem.find_by(id: params[:id]).destroy
         user = current_user.id

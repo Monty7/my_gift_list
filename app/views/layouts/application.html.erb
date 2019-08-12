@@ -10,6 +10,12 @@
   </head>
 
   <body>
+  <nav>
+  <% if logged_in? %>
+    <%= link_to "Logout", '/logout'%>
+
+  <% end %>
+  </nav>
     <%= yield %>
   </body>
 </html>

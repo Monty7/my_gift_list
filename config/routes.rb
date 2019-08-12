@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
   #resources :items
   resources :list_items, only: [:create, :show, :edit, :update, :destroy]
-  
+  resources :lists
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   resources :categories, only: [:index, :show] do
     resources :items, only: [:index, :new, :create, :show, :edit, :update, :destroy]
@@ -18,9 +18,9 @@ Rails.application.routes.draw do
   post '/login' => 'sessions#create'
   
   get '/auth/facebook/callback' =>'sessions#facebook_omni'
-
+  post '/lists/:id' => 'lists#destroy'
   get '/logout' => 'sessions#destroy'
-
+ # post '/list/remove' => 'list#destroy'
   #post '/categories/:id/items/new' => 'items#create'
   #post '/categories/:id/items/new' => 'list_items#create'
   # get '/categories' => 'categories#index'
