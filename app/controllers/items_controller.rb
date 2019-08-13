@@ -20,7 +20,7 @@ class ItemsController < ApplicationController
     end
 
     def create
-        binding.pry
+        
         @list_item = ListItem.find(params[:id])
     end
 

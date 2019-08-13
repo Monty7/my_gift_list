@@ -22,12 +22,6 @@ class UsersController < ApplicationController
         
     end
 
-    # def destroy
-    #      binding.pry
-    #      ListItem.where(list_id: list.id)
-    #      user = current_user.id
-    #      redirect_to user_path(user)
-    #  end
     
     private
     

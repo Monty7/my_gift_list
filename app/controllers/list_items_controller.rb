@@ -17,8 +17,21 @@ class ListItemsController < ApplicationController
         end
     end
 
-    def destroy
+    def edit
+        #binding.pry
+        @listItem = ListItem.find_by(list_id: params[:id] )
+        @listItems = ListItem.where(list_id: params[:id])
+    end
+
+    def update
         binding.pry
+        @listItems = ListItem.where(list_id: params[:id] )
+        @listItems.update(purchaser: current_user.id)
+        
+    end
+
+    def destroy
+    
         list = ListItem.find_by(id: params[:id]).list.id
         ListItem.find_by(id: params[:id]).destroy
         user = current_user.id

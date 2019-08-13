@@ -1,0 +1,7 @@
+<h1>Purchase a gift for ...</h1>
+
+    <%= form_for(@listItem) do |f|%>
+
+        <%= f.collection_check_boxes :id, @listItems, :item_id, :item_id %> 
+        <%= f.submit %>
+    <% end %>

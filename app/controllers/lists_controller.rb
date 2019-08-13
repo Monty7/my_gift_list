@@ -1,7 +1,12 @@
 class ListsController < ApplicationController
    # include ActionView::Helpers::ListItemsHelper::find_listItem
-   include ListItemsHelper
-   def index   
+   include ListsHelper
+
+   def index
+    @lists = List.all
+   # User.where(id: 5).select(:id, :first_name).take 
+   # binding.pry
+    
    end
 
    def new
@@ -22,10 +27,14 @@ class ListsController < ApplicationController
    def show
     @list = List.find(params[:id])
    
-    @user = User.find(current_user.id)
+    @user = User.find(@list.user_id)
   #  @listItem = ListItem.find_by(list_id: params[:id], item_id: item.id)
   # binding.pry
 
+   end
+
+   def add_purchaser
+    binding.pry
    end
 
    def destroy

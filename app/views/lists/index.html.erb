@@ -1,0 +1,9 @@
+<h1>All Gift Lists</h1>
+<h4>Browse other people gift lists</h4>
+<ul>
+<% @lists.each do |list| %>
+
+    <li><%= link_to list.name, user_path(list.user_id) %> | <%= findUser(list).username %></li>
+<% end %>
+
+</ul>
