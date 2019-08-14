@@ -2,13 +2,11 @@ class ListItemsController < ApplicationController
  
     def new
       @list_item = ListItem.new
-     # @categories = Category.all 
      @lists = current_user.lists
      
     end
 
     def create
-       # binding.pry
         @list_item = ListItem.new(list_id: params[:list_item][:list_id], item_id: params[:list_item][:item_id])
         if @list_item.save
            redirect_to user_list_path(current_user, @list_item.list_id)  
@@ -18,18 +16,15 @@ class ListItemsController < ApplicationController
     end
 
     def edit
-        #binding.pry
         @listItem = ListItem.find_by(list_id: params[:id] )
         @listItems = ListItem.where(list_id: params[:id])
     end
 
     def update
-        
-        
         @listItems = ListItem.find_by(list_id: params[:id], item_id: params[:format] )
         list = List.find(params[:id])
         list_owner = list.user
-        binding.pry
+       # binding.pry
         user = User.find_by(id: current_user.id)
         if params[:item][:checked] == "0"
             @listItems.update(purchaser: nil)

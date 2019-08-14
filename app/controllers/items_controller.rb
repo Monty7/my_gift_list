@@ -1,7 +1,6 @@
 class ItemsController < ApplicationController
 
     def index
-        #binding.pry
         #/categories/:category_id/items
         #/items
         #/how to handle whether a user wants to see all items /index or nested items /categories/:category_id/index
@@ -15,8 +14,6 @@ class ItemsController < ApplicationController
         @list_item = ListItem.new
        @item = Item.find(params[:id])
         @lists = current_user.lists
-       #@category = Category.find(params[:category_id])
-       #binding.pry
     end
 
     def create

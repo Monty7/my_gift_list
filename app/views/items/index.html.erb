@@ -1,21 +1,9 @@
 <h1><%= @category.name %></h1>
 
-
 <ul>
     <% @category.items.each do |item|%>
         <li><%= link_to item.name, category_item_path(@category, item) %></li>
     <% end %>
 </ul>
     
-<%# <%= form_for(@item, :url => new_category_item_path(@category)) do |f| %>
-
-    <%# <%= f.collection_check_boxes :name, @category.items, :name, :name %> 
-<!-- <ol>
-    <% @category.items.each do |item| %>
-        <li><%= item.name %> <br>Price: <%= item.price %></li>
-    <% end %>
-</ol>-->
-    <%# <%= f.submit "Add Item To List"%> 
-<%# <% end %> 
-
 
