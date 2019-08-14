@@ -1,25 +1,22 @@
 <h1><%= @user.username.capitalize %>'s, <%= @list.name.capitalize %> Gift List</h1>
-<%# <% binding.pry %> 
+<
 
         <% @list.items.each do |item| %>
-    
     <li>
-        <form action="/users/list/:id">
-            <input class="toggle" type="checkbox" <%= "checked='checked'"  %> <#% if item.purchased?%>
-        </form>
+    <% if current_user != @user %>
+        <%= form_for([@list, item]) do |f| %>
+           
+            <%= f.check_box :checked, :class => "toggle", :checked => ( true if found_listItem(item, @list).purchased? ) %> 
+          <!--  <#% true if found_listItem(item)purchased?%> -->
+        <% end %>
+
+<% end %>
         <%= item.name %> | <%= link_to "Remove Item", find_listItem(item), method: :delete, data: { confirm: "Are you sure you want to remove this item?" } %></li>
         <% end %>
     </ul>
     <%= link_to "Add Items To Your List",  categories_path %> | <%= link_to "Go to all lists", user_path(@user) %>
-<% if current_user != @user %>
 
-    <p><%= link_to "Purchase an item for #{@user.username.capitalize}", edit_list_item_path %></p>
 
-    <%= form_for(@list, url: list_purchase_url, method: :add_purchaser) do |f|%>
+ 
 
-        <%= f.collection_radio_buttons :id, @list.items, :id, :id %> 
-        <%= f.submit %>
-    <% end %>
-
-<% end %>
 

@@ -28,13 +28,10 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
    
     @user = User.find(@list.user_id)
+    @list_item = ListItem.where(list_id: @list.id)
   #  @listItem = ListItem.find_by(list_id: params[:id], item_id: item.id)
   # binding.pry
 
-   end
-
-   def add_purchaser
-    binding.pry
    end
 
    def destroy

@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-helper_method :current_user, :logged_in? #To be accessed in the views
+helper_method :current_user, :logged_in?, :found_listItem #To be accessed in the views
 
 private
     def current_user
@@ -12,6 +12,10 @@ private
 
     def findUser(list)
         User.find_by(id: list.user_id)     
+    end
+
+    def found_listItem(item, list)
+        ListItem.find_by(item_id: item.id, list_id: list.id)
     end
 
 end

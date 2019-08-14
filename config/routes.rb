@@ -20,7 +20,6 @@ Rails.application.routes.draw do
   get '/auth/facebook/callback' =>'sessions#facebook_omni'
   post '/lists/:id' => 'lists#destroy'
   get '/logout' => 'sessions#destroy'
-  post '/list/purchase' => 'lists#add_purchaser'
  # post '/list/remove' => 'list#destroy'
   #post '/categories/:id/items/new' => 'items#create'
   #post '/categories/:id/items/new' => 'list_items#create'
