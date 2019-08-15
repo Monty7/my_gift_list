@@ -1,34 +1,39 @@
-<h1><%= @user.username.capitalize %>'s, <%= @list.name.capitalize %> Gift List</h1>
-<ul>
-        <% @list.items.each do |item| %>
-    <li>
-        <div>
-            <% if current_user != @user %>
-                <%= form_for([@list, item]) do |f| %>
-                    <%= f.check_box :checked, :class => "toggle", :checked => ( true if found_listItem(item, @list).purchased? ) %> 
-                <% end %>
-            <% end %>
+<div class="col-md-12">
+    <h1><%= @user.username.capitalize %>'s, <%= @list.name.capitalize %> Gift List</h1>
+    <div class="row list">
+        <ul class="list-group list-group-flush">
+            <% @list.items.each do |item| %>
+                <li class="list-group-item">
+                
+                    <% if current_user != @user %>
+                        <%= form_for([@list, item]) do |f| %>
+                            <%= f.check_box :checked, :class => "toggle", :checked => ( true if found_listItem(item, @list).purchased? ) %> 
+                        <% end %>
+                    <% end %>
 
-            <% if @user.id == current_user.id && found_listItem(item, @list).purchased? %>
-                *** Purchased by: <%= User.find(found_listItem(item, @list).user_id).username.capitalize %> *** | 
-            <% end %>
+                    <% if @user.id == current_user.id && found_listItem(item, @list).purchased? %>
+                        *** Purchased by: <%= User.find(found_listItem(item, @list).user_id).username.capitalize %> *** | 
+                    <% end %>
 
-            <%= item.name %> 
-        
-            <% if @user.id == current_user.id %>
-            | <%= link_to "Remove Item", find_listItem(item), method: :delete, data: { confirm: "Are you sure you want to remove this item?" } %>
+                    <%= item.name %> 
+                
+                    <% if @user.id == current_user.id %>
+                    | <%= link_to "Remove Item", find_listItem(item), method: :delete, data: { confirm: "Are you sure you want to remove this item?" } %>
+                    <% end %>
+                    
+                </li>
+                    
             <% end %>
-        </div>
-    </li>
-        
-        <% end %>
-</ul>
- <% if @user.id == current_user.id %>
-    <%= link_to "Add Items To Your List",  categories_path %> | <%= link_to "Go to all lists", user_path(@user) %>
-<% else %>
-    <%= link_to "Go back to your own gift lists", user_path(current_user) %> | <%= link_to "See other's gift lists!", lists_path %>
-<% end %>
-
+        </ul>
+    </div>
+    <div class="row">
+    <% if @user.id == current_user.id %>
+        <%= link_to "Add Items To Your List",  categories_path, class: "btn btn-primary" %>  <%= link_to "Go to all of your lists", user_path(@user), class: "btn btn-secondary" %>
+    <% else %>
+        <%= link_to "Go back to your own gift lists", user_path(current_user), class: "btn btn-primary" %>  <%= link_to "See other's gift lists!", lists_path, class: "btn btn-secondary" %>
+    <% end %>
+    </div>
+</div>
 
  
 

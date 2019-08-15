@@ -11,8 +11,16 @@ class ListItemsController < ApplicationController
         if @list_item.save
            redirect_to user_list_path(current_user, @list_item.list_id)  
         else 
-            redirect_to category_items_path
+         
+            item = Item.find_by(id: params[:list_item][:item_id]) #use to pass in category_item_path
+            category = Category.find_by(id: item.category_id) #use to pass in category_item_path
+            flash[:error] = @list_item.errors.messages[:list_id][0]
+            redirect_to category_item_path(category, item)
         end
+    end
+
+    def show
+        @list = List.find(params[:id])
     end
 
     def edit

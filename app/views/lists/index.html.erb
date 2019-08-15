@@ -1,8 +1,15 @@
-<h1>All Gift Lists</h1>
-<h4>Browse other people gift lists</h4>
-<ul>
-    <% @lists.each do |list| %>
-        <li><%= link_to list.name, user_path(list.user_id) %> | <%= findUser(list).username %></li>
-    <% end %>
+<div class="col-md-12">
+    <h1>All Gift Lists</h1>
+    <h4>Browse other people gift lists</h4>
+    <div class="row list">
+        <ul class="list-group list-group-flush">
+            <% @lists.each do |list| %>
+               <% if current_user.id != list.user_id %>
+                    <li class="list-group-item"><%= link_to list.name.capitalize, user_path(list.user_id)  %> | <%= findUser(list).username %></li>
+                <% end %>
+            <% end %>
+        </ul>
+    </div>
+    <div><%= link_to "Go back to your own gift lists", user_path(current_user), class: "btn btn-primary btn-block" %></div>
+</div>
 
-</ul>

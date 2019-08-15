@@ -1,9 +1,11 @@
-<h1><%= @category.name %></h1>
+<div class="col-md-12">
+    <h1><%= @category.name %></h1>
 
-<ul>
-    <% @category.items.each do |item|%>
-        <li><%= link_to item.name, category_item_path(@category, item) %></li>
-    <% end %>
-</ul>
+    <ul class="list-group">
+        <% @category.items.each do |item|%>
+            <li class="list-group-item"><%= link_to item.name, category_item_path(@category, item) %></li>
+        <% end %>
+    </ul>
+</div>
     
 

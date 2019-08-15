@@ -1,20 +1,43 @@
-<h1><%= @user.username %> Lists</h1>
 
-<% if @user.lists.empty? %>
-    <h4>You currently do not have any lists</h4>
-    
-<% else %>
-    <% @user.lists.each do |list| %>
-       
-       <div><%= link_to list.name, user_list_path(@user, list) %> 
-        <% if @user.id == current_user.id %>
-            | <%= link_to "Remove List", list, method: :destroy, data: { confirm: "Are you sure you want to remove this list?" } %></div>
-        <% end %>
+<div class="col-md-12">
+    <h1><%= @user.username.capitalize %> Lists</h1>
+    <% if !flash[:success].blank? %>
+        <div class="alert alert-success">
+            <%= flash[:success] %>
+        </div>
     <% end %>
-<% end %>
+    <div class="row list">
+        <% if @user.lists.empty? %>
+            <h4>You currently do not have any lists</h4>   
+        <% else %>
+            <ul class="list-group list-group-flush">
+                <% @user.lists.each do |list| %> 
+                    <li class="list-group-item">
+                    <%= link_to list.name, user_list_path(@user, list) %> 
+                    <% if @user.id == current_user.id %>
+                        | <%= link_to "Remove List", list, method: :destroy, data: { confirm: "Are you sure you want to remove this list?" } %>
+                        <% end %>
+                    </li>
+                <% end %>
+            </ul>
+        <% end %>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+        <% if @user.id == current_user.id %>
+            <p> <%= link_to "Create a new gift list", new_user_list_path(@user), class: "btn btn-primary btn-block" %></p>
+        <% end %>
+        </div>
+        <div class="col-md-6">
+            <%= link_to "See other's gift lists!", lists_path, class: "btn btn-primary btn-block" %>
+        </div>
+    </div>
 
-<% if @user.id == current_user.id %>
-    <p>Create a new <%= link_to "gift list", new_user_list_path(@user) %></p>
-<% end %>
+    <% if !flash[:destroy].blank? %>
+        <div class="alert alert-info">
+            <%= flash[:destroy] %>
+        </div>
+    <% end %>
 
-<p><%= link_to "See other's gift lists!", lists_path %></p>
+</div>

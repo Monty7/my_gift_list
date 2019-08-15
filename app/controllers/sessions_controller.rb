@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
+
     def home
-    
     end
 
     def new
@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     def facebook_omni
         @user = User.find_or_create_by(uid: auth['uid']) do |u|
-           u.password_digest = auth["uid"]
+           u.password = SecureRandom.hex(13)
            # binding.pry
            u.username = auth['info']['name']
            u.email = auth['info']['email']
@@ -27,9 +27,9 @@ class SessionsController < ApplicationController
             session[:user_id] = @user.id
             redirect_to user_path(@user)
         else
+            flash[:error] = "Please try again"
             redirect_to '/login'
         end
-     
     end
     
     def destroy

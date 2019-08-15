@@ -3,9 +3,7 @@ class ListsController < ApplicationController
    include ListsHelper
 
    def index
-    @lists = List.all
-   # User.where(id: 5).select(:id, :first_name).take 
-   # binding.pry
+        @lists = List.all
     
    end
 
@@ -36,10 +34,14 @@ class ListsController < ApplicationController
 
    def destroy
        # binding.pry
-        ListItem.where(list_id: params[:id]).destroy_all  #Look for all instances of the list in the list item table
-        List.find_by(id: params[:id]).destroy
-        user = current_user.id
-        redirect_to user_path(user)
+    ListItem.find_list(params[:id]).destroy_all #Look for all instances of the list in the list item table
+    #ListItem.where(list_id: params[:id]).destroy_all  
+    list = List.find_by(id: params[:id])
+    list.destroy
+    user = current_user.id
+    flash[:destroy] = "#{list.name} is now removed"
+    redirect_to user_path(user)
+
    end
 
 

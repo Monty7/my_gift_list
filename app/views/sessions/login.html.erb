@@ -1,16 +1,29 @@
+<div class="col-md-12">
 <h1>Log In</h1>
 
-<% if flash[:message] %>
-    
-<% end %>
+	<% if !flash[:error].blank? %>
+		<div class="notice">
+			<%= flash[:error] %>
+		</div>
+	<% end %>
+		
 
-<%= form_for :user, url: '/login' do |f| %>
-	<%= f.label :username %>
-	<%= f.text_field :username %>
+	<%= form_for :user, url: '/login' do |f| %>
+		<%= f.label :username %>
+		<%= f.text_field :username %>
 
-	<%=  f.label :password %>
-	<%=  f.password_field :password %>
+		<%=  f.label :password %>
+		<%=  f.password_field :password %>
 
-    <%= f.submit "Login" %>
+		<%= f.submit "Login" %>
 
-<% end %>
+	<% end %>
+
+	<% if @user.errors.any? %>
+		<div>
+			<% @user.errors.full_messages.each do |error|%>
+				<p><%= error %></p>
+			<% end %>
+		</div>
+	<% end %>
+</div>
