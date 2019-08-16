@@ -44,9 +44,12 @@ class ListItemsController < ApplicationController
     end
 
     def destroy
-    
+       # 
         list = ListItem.find_by(id: params[:id]).list.id
-        ListItem.find_by(id: params[:id]).destroy
+        list_item = ListItem.find_by(id: params[:id])
+        item_name = Item.find_by(id: list_item.item_id).name
+        flash[:destroy] = "#{item_name} is now removed from your list."
+        list_item.destroy
         user = current_user.id
         redirect_to user_list_path(user, list)
     end

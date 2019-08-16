@@ -1,11 +1,11 @@
 <div class="col-md-12">
     <h1>List of items by Category</h1>
-
-    <ul class="list-group">
-        <% @categories.each do |category| %>
-            <li class="list-group-item"><%= link_to category.name, category_items_path(category) %></li>
-        <% end %>
-    </ul>
-
-    <p><%= link_to "Go to your lists", user_path(@user) %></p>
+    <div class="row list">
+        <ul class="list-group list-group-flush">
+            <% @categories.each do |category| %>
+                <li class="list-group-item"><%= link_to category.name, category_items_path(category) %></li>
+            <% end %>
+        </ul>
+    </div>
+    <p><%= link_to "Go to your lists", user_path(@user), class: "btn btn-primary btn-block" %></p>
 </div>

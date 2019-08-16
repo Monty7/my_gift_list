@@ -1,21 +1,24 @@
 <div class="col-md-12">
     <h1><%= @item.name %></h1>
+    <div class="row list">
+        <% if !flash[:error].blank? %>
+            <div class="alert alert-info">
+                <%= flash[:error] %>
+            </div>
+        <% end %>
+    <div>
+    <div class="row">
+        <div class="col-md-12">
+            <%= form_for(@list_item) do |f| %>
 
-    <% if !flash[:error].blank? %>
-        <div class="alert alert-info">
-            <%= flash[:error] %>
+                <%= f.label :name %>
+                <%= f.collection_select :list_id, @lists, :id, :name %> 
+
+                <%= f.hidden_field :item_id, value: @item.id %>
+                <%= f.submit "Add Item To List"%>
+            <% end %>
         </div>
-    <% end %>
-
-    <%= form_for(@list_item) do |f| %>
-
-        <%= f.label :name %>
-        <%= f.collection_select :list_id, @lists, :id, :name %> 
-
-        <%= f.hidden_field :item_id, value: @item.id %>
-        <%= f.submit "Add Item To List"%>
-    <% end %>
-
+    </div>
     <%= link_to "Back to your lists", user_path(@user), class: "btn btn-primary" %> | <%= link_to "Back to Categories", categories_path, class: "btn btn-secondary" %>
 
 </div>
