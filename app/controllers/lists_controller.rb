@@ -38,9 +38,8 @@ class ListsController < ApplicationController
     #ListItem.where(list_id: params[:id]).destroy_all  
     list = List.find_by(id: params[:id])
     list.destroy
-    user = current_user.id
     flash[:destroy] = "#{list.name} is now removed"
-    redirect_to user_path(user)
+    redirect_to user_path(current_user)
 
    end
 
