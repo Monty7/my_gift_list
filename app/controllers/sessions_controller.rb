@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
 
     def facebook_omni
         @user = User.find_or_create_by(uid: auth['uid']) do |u|
-           u.password = SecureRandom.hex(13)
+           u.password = SecureRandom.uuid
            # binding.pry
            u.username = auth['info']['name']
            u.email = auth['info']['email']
