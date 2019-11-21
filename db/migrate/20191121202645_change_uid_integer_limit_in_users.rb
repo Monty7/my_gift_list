@@ -1,4 +1,4 @@
-class ChangeIntegerLimitInUserTable < ActiveRecord::Migration[5.2]
+class ChangeUidIntegerLimitInUsers < ActiveRecord::Migration[5.2]
   def change
     change_column :users, :uid, :integer, limit: 8
   end
