@@ -17,8 +17,8 @@
  /* Custom bootstrap variables must be set or imported *before* bootstrap.*/
 @import "bootstrap";
 
-body { background-image: url(/assets/gift_hero.jpg); }
-h1, h3 { font-family: 'Bree Serif', serif; color: rgb(242, 242, 236); }
+body { background-image: url(/assets/gift_hero.jpg); font-family: Cambay, serif; }
+h1, h3 { color: rgb(242, 242, 236); }
 .list { margin: 2rem 0; }
 a.btn.btn-primary, a.btn.btn-secondary { margin: 0 .5rem; }
 .hero { background-color: rgba(135, 160, 76, .7); margin-top: 10%; }
