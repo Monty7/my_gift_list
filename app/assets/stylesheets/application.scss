@@ -18,6 +18,7 @@
 @import "bootstrap";
 
 body { background-image: url(/assets/gift_hero.jpg); font-family: Cambay, serif; }
+body.users { background-image: none; }
 h1, h3 { color: rgb(242, 242, 236); }
 .list { margin: 2rem 0; }
 a.btn.btn-primary, a.btn.btn-secondary { margin: 0 .5rem; }
